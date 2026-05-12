@@ -8,11 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner sc=new Scanner(System.in);
-    EmpleadoController empleado=new EmpleadoController();
+    Scanner sc =new Scanner(System.in);
+    EmpleadoController empleado = new EmpleadoController();
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     public void start(){
         while(true) {
@@ -26,14 +28,14 @@ public class Menu {
                     4. Gestión categorías
                     5. Gestión Ventas
                     """);
-            int opcion = sc.nextInt();
+            String opcion = sc.nextLine();
 
             switch (opcion) {
-                case 1 -> gestionEmpleados();
-                case 2 -> gestionClientes();
-                case 3 -> gestionLibros();
-                case 4 -> gestionCategorias();
-                case 5 -> gestionVentas();
+                case "1" -> gestionEmpleados();
+                case "2" -> gestionClientes();
+                case "3" -> gestionLibros();
+                case "4" -> gestionCategorias();
+                case "5" -> gestionVentas();
             }
         }
     }
@@ -46,74 +48,117 @@ public class Menu {
                 4. Modificar empleado
                 5. Eliminar empleado
                 """);
-        int opcion = sc.nextInt();
+        String opcion = sc.nextLine();
 
         switch(opcion){
-            case 1 -> verEmpleado();
-            case 2 -> verTodosEmpleados();
-            case 3 -> añadirEmpleado();
-            case 4 -> modificarEmpleado();
-            case 5 -> eliminarEmpleado();
+            case "1" -> verEmpleado();
+            case "2" -> verTodosEmpleados();
+            case "3" -> añadirEmpleado();
+            case "4" -> modificarEmpleado();
+            case "5" -> eliminarEmpleado();
         }
     }
 
     public void verEmpleado(){
-        System.out.println("Introduce el Id: ");
-        int id=sc.nextInt();
+        try{
+            System.out.println("Introduce el Id: ");
+            int id = sc.nextInt();
 
-        System.out.println(empleado.findEmpleado(id));
+            System.out.println(empleado.findEmpleado(id));
+        }catch(InputMismatchException e){
+            return;
+        }
     }
 
     public void verTodosEmpleados(){
-        System.out.println(empleado.findAll());
+        try {
+            for (Empleado empleado : empleado.findAll()) {
+                System.out.println(empleado);
+            }
+        }catch(InputMismatchException e){
+            return;
+        }
     }
 
     public void añadirEmpleado(){
-        System.out.print("Introduce el nombre: ");
-        String nombre = sc.nextLine();
+        try {
+            sc.nextLine();
+            System.out.print("Introduce el nombre: ");
+            String nombre = sc.nextLine();
 
-        System.out.print("Introduce la fecha de nacimiento: ");
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yy");
-        LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
+            System.out.print("Introduce la fecha de nacimiento: ");
+            LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
 
-        System.out.print("Introduce el teléfono: ");
-        int telefono = sc.nextInt();
+            System.out.print("Introduce el teléfono: ");
+            int telefono = sc.nextInt();
+            sc.nextLine();
 
-        System.out.print("Introduce el email: ");
-        String email = sc.nextLine();
+            System.out.print("Introduce el email: ");
+            String email = sc.nextLine();
 
-        LocalDateTime fecha_registro = LocalDateTime.now();
+            LocalDateTime fecha_registro = LocalDateTime.now();
 
-        empleado.save(new Empleado(nombre, fecha_nacimiento, telefono, email, fecha_registro));
+            empleado.save(new Empleado(nombre, fecha_nacimiento, telefono, email, fecha_registro));
+        }catch(InputMismatchException e){
+            return;
+        }
     }
 
     public void modificarEmpleado(){
+        try {
+            System.out.println("Que usuarios quieres modificar?");
+            int id = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Introduce el nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Introduce la fecha de nacimiento: ");
+            LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
+            System.out.println("Introduce el telefono: ");
+            int telefono = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Introduce el email:");
+            String email = sc.nextLine();
 
+            empleado.update(id, nombre, fecha_nacimiento, telefono, email);
+        }catch(InputMismatchException E){
+            return;
+        }
     }
 
     public void eliminarEmpleado(){
+        try {
+            System.out.println("Que usuario quieres eliminar?");
+            int id = sc.nextInt();
 
+            empleado.deleteEmpleado(id);
+        }catch(InputMismatchException e){
+            return;
+        }
     }
 
 
     public void gestionClientes(){
-        System.out.println("""
-                1. Ver cliente
-                2. Ver todos
-                3. Añadir cliente
-                4. Modificar cliente
-                5. Eliminar cliente
-                """);
+        try {
+            System.out.println("""
+                    1. Ver cliente
+                    2. Ver todos
+                    3. Añadir cliente
+                    4. Modificar cliente
+                    5. Eliminar cliente
+                    """);
 
-        int opcion = sc.nextInt();
+            int opcion = sc.nextInt();
 
-        switch(opcion){
-            case 1 -> verCliente();
-            case 2 -> verTodosClientes();
-            case 3 -> añadirCliente();
-            case 4 -> modificarCliente();
-            case 5 -> eliminarCliente();
-            default -> System.out.println("Opción invalida");
+            switch (opcion) {
+                case 1 -> verCliente();
+                case 2 -> verTodosClientes();
+                case 3 -> añadirCliente();
+                case 4 -> modificarCliente();
+                case 5 -> eliminarCliente();
+                default -> System.out.println("Opción invalida");
+            }
+        }catch(InputMismatchException e){
+            return;
         }
     }
 

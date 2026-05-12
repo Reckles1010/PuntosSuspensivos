@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Empleado {
-    private static int id_general = 1;
     private int id_empleado;
     private String nombre;
     private LocalDate fecha_nacimiento;
@@ -14,28 +13,24 @@ public class Empleado {
     private String email;
     private LocalDateTime fecha_registro;
 
-    public Empleado() {
-        this.id_empleado = id_general;
-        id_general++;
-    }
 
     public Empleado(String nombre, LocalDate fecha_nacimiento, int telefono, String email, LocalDateTime fecha_registro) {
-        this.id_empleado = id_general;
         this.nombre = nombre;
         this.fecha_nacimiento = fecha_nacimiento;
         this.telefono = telefono;
         this.email = email;
         this.fecha_registro = fecha_registro;
-        id_general++;
     }
 
-    public static int getId_general() {
-        return id_general;
+    public Empleado(int id_empleado, String nombre, LocalDate fecha_nacimiento, int telefono, String email, LocalDateTime fecha_registro) {
+        this.id_empleado = id_empleado;
+        this.nombre = nombre;
+        this.fecha_nacimiento = fecha_nacimiento;
+        this.telefono = telefono;
+        this.email = email;
+        this.fecha_registro = fecha_registro;
     }
 
-    public static void setId_general(int id_general) {
-        Empleado.id_general = id_general;
-    }
 
     public LocalDateTime getFecha_registro() {
         return fecha_registro;

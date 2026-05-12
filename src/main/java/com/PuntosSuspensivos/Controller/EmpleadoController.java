@@ -5,6 +5,7 @@ import com.PuntosSuspensivos.Repository.EmpleadoRepository;
 import com.PuntosSuspensivos.Service.EmpleadoService;
 
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmpleadoController implements EmpleadoRepository{
@@ -16,8 +17,8 @@ public class EmpleadoController implements EmpleadoRepository{
     };
 
     @Override
-    public void update(Empleado empleado){
-        empleadoService.update(empleado);
+    public void update(int id,String nombre, LocalDate fecha_nacimiento, int telefono, String email){
+        empleadoService.update(id, nombre, fecha_nacimiento, telefono, email);
     };
 
     @Override

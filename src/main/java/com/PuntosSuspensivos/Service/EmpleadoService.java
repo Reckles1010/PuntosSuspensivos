@@ -4,6 +4,7 @@ import com.PuntosSuspensivos.Entity.Empleado;
 import com.PuntosSuspensivos.Repository.EmpleadoRepository;
 import com.PuntosSuspensivos.Repository.EmpleadoRepositoryImpl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmpleadoService implements EmpleadoRepository {
@@ -15,8 +16,8 @@ public class EmpleadoService implements EmpleadoRepository {
     };
 
     @Override
-    public void update(Empleado empleado){
-        empleadoRepositoryImpl.update(empleado);
+    public void update(int id, String nombre, LocalDate fecha_nacimiento, int telefono, String email){
+        empleadoRepositoryImpl.update(id, nombre, fecha_nacimiento, telefono, email);
     };
 
     @Override
