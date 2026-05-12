@@ -1,0 +1,419 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+ 
+
+    let usuarios = JSON.parse(sessionStorage.getItem("usuarios"))||[
+        { id: 1, nombre: "Ana López", email: "ana@example.com", rol: "Cliente" },
+        { id: 2, nombre: "Carlos Ruiz", email: "carlos@example.com", rol: "Personal" },
+        { id: 3, nombre: "María Fernández", email: "maria@example.com", rol: "Cliente" }
+    ];
+    let libros = JSON.parse(sessionStorage.getItem("libros"))||[
+        { id: 1, titulo: "Cien Años de Soledad", autor: "Gabriel García Márquez", categoria: "Novela", stock: 15, totalStock: 20 },
+        { id: 2, titulo: "El Señor de los Anillos", autor: "J.R.R. Tolkien", categoria: "Fantasía", stock: 25, totalStock: 30 },
+        { id: 3, titulo: "1984", autor: "George Orwell", categoria: "Distopía", stock: 10, totalStock: 10 },
+        { id: 4, titulo: "Un Mundo Feliz", autor: "Aldous Huxley", categoria: "Distopía", stock: 0, totalStock: 8 },
+        { id: 5, titulo: "Ficciones", autor: "Jorge Luis Borges", categoria: "Relatos", stock: 12, totalStock: 15 }
+    ];
+
+
+    const getAutores = () => [...new Set(libros.map(libro => libro.autor))];
+    const getCategorias = () => [...new Set(libros.map(libro => libro.categoria))];
+
+
+    const mainContent = document.getElementById('main__content');
+    const menuLinks = document.querySelectorAll('.sidebar .menu a');
+    const themeToggleButton = document.getElementById('theme__toggle');
+    
+
+    themeToggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark__mode');
+        const isDarkMode = document.body.classList.contains('dark__mode');
+        localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
+        const icon = themeToggleButton.querySelector('i');
+        const text = themeToggleButton.querySelector('span');
+        if (isDarkMode) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            text.innerText = "Modo Claro";
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            text.innerText = "Modo Oscuro";
+        }
+    });
+
+
+    function loadTheme() {
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark__mode');
+            const icon = themeToggleButton.querySelector('i');
+            const text = themeToggleButton.querySelector('span');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            text.innerText = "Modo Claro";
+        }
+    }
+
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = e.target.closest('a').getAttribute('data-section');
+            
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            const activePage = document.getElementById(sectionId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            menuLinks.forEach(l => l.classList.remove('active'));
+            e.target.closest('a').classList.add('active');
+            
+            cargarContenido(sectionId);
+        });
+    });
+
+
+
+    function cargarContenido(section) {
+        switch(section) {
+            case 'libros':
+                renderLibros();
+                break;
+            case 'autores':
+                renderAutores();
+                break;
+            case 'categorias':
+                renderCategorias();
+                break;
+            case 'usuarios':
+                renderUsuarios();
+                break;
+            case 'disponibilidad':
+                renderDisponibilidad();
+                renderDashboard();
+                break;
+        }
+    }
+
+
+    function renderDashboard() {
+        const totalDisponibles = libros.reduce((sum, libro) => sum + libro.stock, 0);
+        const totalInventario = libros.reduce((sum, libro) => sum + (libro.totalStock || libro.stock), 0);
+        const totalVendidos = totalInventario - totalDisponibles;
+        
+        const porcentaje = totalInventario > 0 ? (totalDisponibles / totalInventario) * 100 : 0;
+        
+        document.getElementById('disponibles-count').innerText = `Disponibles (${totalDisponibles})`;
+        document.getElementById('vendidos-count').innerText = `Vendidos (${totalVendidos})`;
+        document.getElementById('disponibilidad-bar').style.width = `${porcentaje}%`;
+        document.getElementById('disponibilidad-percent').innerText = `${porcentaje.toFixed(0)}% disponible`;
+    }
+
+    function renderLibros() {
+        const container = document.getElementById('libros__list');
+        container.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${libros.map(libro => `
+                        <tr>
+                            <td>${libro.id}</td>
+                            <td>${libro.titulo}</td>
+                            <td>${libro.autor}</td>
+                            <td>${libro.categoria}</td>
+                            <td>${libro.stock}</td>
+                            <td>
+                                <button class="button__edit" data-id="${libro.id}">Editar</button>
+                                <button class="button__delete" data-id="${libro.id}">Eliminar</button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    }
+
+    function renderAutores() {
+
+        const container = document.getElementById('autores__list');
+        const autores = getAutores();
+        container.innerHTML = `
+            <table>
+                <thead><tr><th>Autor</th></tr></thead>
+                <tbody>
+                    ${autores.map(autor => `<tr><td>${autor}</td></tr>`).join('')}
+                </tbody>
+            </table>`;
+    }
+
+    function renderCategorias() {
+
+        const container = document.getElementById('categorias__list');
+        const categorias = getCategorias();
+        container.innerHTML = `
+            <table>
+                <thead><tr><th>Categoría</th></tr></thead>
+                <tbody>
+                    ${categorias.map(cat => `<tr><td>${cat}</td></tr>`).join('')}
+                </tbody>
+            </table>`;
+    }
+
+    function renderUsuarios() {
+
+    const container = document.getElementById('usuarios__list');
+        container.innerHTML = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${usuarios.map(user => `
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.nombre}</td>
+                            <td>${user.email}</td>
+                            <td>${user.rol}</td>
+                            <td>
+                                <button class="button__edit" data-id="${user.id}">Editar</button>
+                                <button class="button__delete" data-id="${user.id}">Eliminar</button>
+                            </td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>`;
+}
+
+
+    function renderDisponibilidad(filtro = '') {
+        let barra = document.getElementById('disponibilidad-bar');
+
+        const container = document.getElementById('disponibilidad__list');
+        const librosFiltrados = libros.filter(libro => 
+            libro.titulo.toLowerCase().includes(filtro.toLowerCase())
+        );
+        container.innerHTML = `
+            <table>
+                <thead>
+                    <tr><th>Título</th><th>Stock</th><th>Estado</th></tr>
+                </thead>
+                <tbody>
+                    ${librosFiltrados.map(libro => `
+                        <tr>
+                            <td>${libro.titulo}</td>
+                            <td>${libro.stock}</td>
+                            <td>${libro.stock > 0 ? '<span style="color:green;">Disponible</span>' : '<span style="color:red;">Agotado</span>'}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    };
+
+    
+    const modal = document.getElementById('modal__libro');
+    const buttonNuevoLibro = document.getElementById('button__libro');
+    const closeModal = document.querySelector('.close__button');
+    const formLibro = document.getElementById('form__libro');
+
+    buttonNuevoLibro.onclick = () => {
+        formLibro.reset();
+        document.getElementById('libro__id').value = '';
+        document.getElementById('modal__titulo__libro').innerText = "Añadir Nuevo Libro";
+        modal.style.display = 'block';
+    }
+
+    closeModal.addEventListener("click", quitarModal);
+
+    function quitarModal(){
+        modal.style.display = 'none';
+    }
+
+    formLibro.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = document.getElementById('libro__id').value;
+        const stockVal = parseInt(document.getElementById('stock').value);
+
+        const nuevoLibro = {
+            titulo: document.getElementById('titulo').value,
+            autor: document.getElementById('autor').value,
+            categoria: document.getElementById('categoria').value,
+            stock: stockVal
+        };
+
+
+        const index = libros.findIndex(l => l.id == id);
+
+        if(index !== -1){
+            if(stockVal > libros[index].totalStock){
+                libros[index].totalStock = stockVal;
+            }
+            libros[index] = { ...libros[index], ...nuevoLibro };
+        } else {
+            libros.push({
+                id: Date.now(),
+                ...nuevoLibro,
+                totalStock: stockVal
+            });
+        }
+
+        quitarModal();
+
+
+        sessionStorage.setItem("libros", JSON.stringify(libros));
+
+
+        renderLibros();
+
+        if(typeof renderDashboard === "function") renderDashboard();
+    });
+
+
+
+    document.getElementById('libros__list').addEventListener('click', (e) => {
+        const editButton = e.target.closest('.button__edit');
+
+        
+
+        if (editButton) {
+            const id = editButton.dataset.id;
+            const libro = libros.find(l => l.id == id);
+            
+            modal.style.display = 'block';
+
+            document.getElementById('libro__id').value = libro.id;
+            document.getElementById('titulo').value = libro.titulo;
+            document.getElementById('autor').value = libro.autor;
+            document.getElementById('categoria').value = libro.categoria;
+            document.getElementById('stock').value = libro.stock;
+            
+            document.getElementById('modal-titulo').innerText = "Editar Libro";
+        }
+
+        if (e.target.classList.contains('button__delete')) {
+            const id = e.target.dataset.id;
+            if (confirm('¿Estás seguro de que quieres eliminar este libro?')) {
+                libros = libros.filter(l => l.id != id);
+
+                sessionStorage.setItem("libros", JSON.stringify(libros));
+                renderLibros();
+                renderDashboard();
+            }
+        }
+        });
+    
+    document.getElementById('filtro-disponibilidad').addEventListener('keyup', (e) => {
+        renderDisponibilidad(e.target.value);
+    });
+
+
+
+
+
+    const modalUsuario = document.getElementById('modal__usuario');
+    const buttonNuevoUsuario = document.getElementById('button__usuario');
+    const formUsuario = document.getElementById('form__usuario');    
+    const closeLibroBtn = document.getElementById('close__libro');
+    const closeUsuarioBtn = document.getElementById('close__usuario');
+    
+    buttonNuevoUsuario.addEventListener('click', () => {
+        formUsuario.reset();
+        document.getElementById('usuario__id').value = ''; // Limpiar ID para nuevo registro
+        document.getElementById('modal__titulo__usuario').innerText = "Añadir Nuevo Usuario";
+        modalUsuario.style.display = 'block';
+    });
+
+    closeUsuarioBtn.onclick = () => {
+        modalUsuario.style.display = 'none';
+    };
+
+    formUsuario.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const id = Number(document.getElementById('usuario__id').value);
+
+        const datosUsuario = {
+            nombre: document.getElementById('usuario__nombre').value,
+            email: document.getElementById('usuario__email').value,
+            rol: document.getElementById('usuario__rol').value
+        };
+
+
+        const index = usuarios.findIndex(u => u.id == id);
+        if (index !== -1) {
+                usuarios[index] = { ...usuarios[index], ...datosUsuario };
+
+        }else{
+            const nuevoUsuario = { 
+                id: Date.now(), 
+                ...datosUsuario 
+            };
+            usuarios.push(nuevoUsuario);
+        }
+
+        modalUsuario.style.display = 'none';
+
+        sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        renderUsuarios();
+    });
+
+
+    document.getElementById('usuarios__list').addEventListener('click', (e) => {
+        const btn = e.target;
+        const id = btn.dataset.id;
+
+        if (btn.classList.contains('button__edit')) {
+            const usuario = usuarios.find(u => u.id == id);
+            if (usuario) {
+                document.getElementById('usuario__id').value = usuario.id;
+                document.getElementById('usuario__nombre').value = usuario.nombre;
+                document.getElementById('usuario__email').value = usuario.email;
+                document.getElementById('usuario__rol').value = usuario.rol;
+                
+                document.getElementById('modal__titulo__usuario').innerText = "Editar Usuario";
+                modalUsuario.style.display = 'block';
+            }
+        }
+
+        if (btn.classList.contains('button__delete')) {
+            if (confirm('¿Estás seguro de eliminar este usuario?')) {
+                usuarios = usuarios.filter(u => u.id != id);
+                renderUsuarios();
+            }
+        }
+    });
+
+    document.getElementById('close__usuario').onclick = () => {
+    modalUsuario.style.display = 'none';
+    };
+
+    window.addEventListener("click", (event) => {
+        if (event.target == modal) {
+            quitarModal();
+        }
+        if (event.target == modalUsuario) {
+            modalUsuario.style.display = 'none';
+        } 
+    });
+
+
+    loadTheme();
+    cargarContenido('inicio');
+});
