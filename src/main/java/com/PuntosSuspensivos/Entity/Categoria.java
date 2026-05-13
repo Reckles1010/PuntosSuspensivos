@@ -3,13 +3,16 @@ package com.PuntosSuspensivos.Entity;
 import java.util.Objects;
 
 public class Categoria {
-    private static int id_general=1;
     private int id_categoria;
     private String nombre;
 
-    public void Categoria(String nombre){
-        this.id_categoria=id_general;
-        id_general++;
+
+    public Categoria(String nombre){
+        this.nombre=nombre;
+    }
+
+    public Categoria(int id_categoria, String nombre){
+        this.id_categoria=id_categoria;
         this.nombre=nombre;
     }
 

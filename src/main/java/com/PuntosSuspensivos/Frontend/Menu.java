@@ -1,11 +1,7 @@
 package com.PuntosSuspensivos.Frontend;
 
-import com.PuntosSuspensivos.Controller.AutorController;
-import com.PuntosSuspensivos.Controller.ClienteController;
-import com.PuntosSuspensivos.Controller.EmpleadoController;
-import com.PuntosSuspensivos.Entity.Autor;
-import com.PuntosSuspensivos.Entity.Cliente;
-import com.PuntosSuspensivos.Entity.Empleado;
+import com.PuntosSuspensivos.Controller.*;
+import com.PuntosSuspensivos.Entity.*;
 
 
 import java.time.LocalDate;
@@ -20,6 +16,8 @@ public class Menu {
     EmpleadoController empleado = new EmpleadoController();
     ClienteController cliente = new ClienteController();
     AutorController autor = new AutorController();
+    CategoriaController categoria = new CategoriaController();
+    LibroController libro = new LibroController();
 
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yy");
 
@@ -246,23 +244,74 @@ public class Menu {
     }
 
     public void verLibro(){
-
+        System.out.println("Introduce el Id:");
+        int id = pedirNumero();
+        
+        System.out.println(libro.findLibro(id));
     }
 
     public void verTodosLibros(){
-
+        for(Libro libro : libro.findAll()){
+            System.out.println(libro);
+        }
     }
 
     public void añadirLibro(){
+        System.out.println("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+        System.out.println("Introduce el Id del autor:  ");
+        int id_autor = pedirNumero();
+        System.out.println("Introduce el Id de la categoria:  ");
+        int id_categoria = pedirNumero();
+        System.out.println("Introduce el isbn: ");
+        String isbn = sc.nextLine();
+        System.out.println("Introduce la editorial: ");
+        String editorial = sc.nextLine();
+        System.out.println("Introduce la descripcion: ");
+        String descripcion = sc.nextLine();
+        System.out.println("Introduce el año de publicación: ");
+        int añoLanzamiento = pedirNumero();
+        System.out.println("Introduce el precio: ");
+        double precio = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Introduce el stock: ");
+        int stock = pedirNumero();
+
+        libro.save(new Libro(id_autor, id_categoria, nombre, isbn, editorial, descripcion, añoLanzamiento, precio, stock));
 
     }
 
     public void modificarLibro(){
+        System.out.println("Que libro quieres modificar? ");
+        int id_libro =pedirNumero();
+        System.out.println("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+        System.out.println("Introduce el Id del autor:  ");
+        int id_autor = pedirNumero();
+        System.out.println("Introduce el Id de la categoria:  ");
+        int id_categoria = pedirNumero();
+        System.out.println("Introduce el isbn: ");
+        String isbn = sc.nextLine();
+        System.out.println("Introduce la editorial: ");
+        String editorial = sc.nextLine();
+        System.out.println("Introduce la descripcion: ");
+        String descripcion = sc.nextLine();
+        System.out.println("Introduce el año de publicación: ");
+        int añoLanzamiento = pedirNumero();
+        System.out.println("Introduce el precio: ");
+        double precio = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Introduce el stock: ");
+        int stock = pedirNumero();
 
+        libro.update(id_libro, id_autor, id_categoria, nombre, isbn, editorial, descripcion, añoLanzamiento, precio, stock);
     }
 
     public void eliminarLibro(){
+        System.out.println("Que usuario quieres eliminar? ");
+        int id = pedirNumero();
 
+        libro.deleteLibro(id);
     }
 
 
@@ -287,23 +336,39 @@ public class Menu {
     }
 
     public void verCategoria(){
+        System.out.println("Introduce el Id:");
+        int id_categoria = pedirNumero();
 
+        System.out.println(categoria.findCategoria(id_categoria));
     }
 
     public void verTodasCategorias(){
-
+        for(Categoria categoria : categoria.findAll()){
+            System.out.println(categoria);
+        }
     }
 
     public void añadirCategoria(){
+        System.out.println("Introduce el nombre:");
+        String nombre = sc.nextLine();
 
+        categoria.save(new Categoria(nombre));
     }
 
     public void modificarCategoria(){
+        System.out.println("Que categoría quieres modificar)");
+        int id = pedirNumero();
+        System.out.println("Introduce el nombre:");
+        String nombre = sc.nextLine();
 
+        categoria.update(id, nombre);
     }
 
     public void eliminarCategoria(){
+        System.out.println("Que categoría quieres eliminar?");
+        int id = pedirNumero();
 
+        categoria.deleteCategoria(id);
     }
 
 
