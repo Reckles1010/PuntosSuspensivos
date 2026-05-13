@@ -109,8 +109,6 @@ public class EmpleadoRepositoryImpl implements EmpleadoRepository{
             ResultSet rs = ps.executeQuery();
 
             if(rs.next()){
-                System.out.println("ID raw: " + rs.getObject("id_usuario"));
-                System.out.println("ID int: " + rs.getInt("id_usuario"));
                 return new Empleado(
                     rs.getInt("id_usuario"),
                     rs.getString("nombre"),

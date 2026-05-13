@@ -1,41 +1,51 @@
 package com.PuntosSuspensivos.Frontend;
 
+import com.PuntosSuspensivos.Controller.AutorController;
+import com.PuntosSuspensivos.Controller.ClienteController;
 import com.PuntosSuspensivos.Controller.EmpleadoController;
+import com.PuntosSuspensivos.Entity.Autor;
+import com.PuntosSuspensivos.Entity.Cliente;
 import com.PuntosSuspensivos.Entity.Empleado;
 
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
     Scanner sc =new Scanner(System.in);
+
     EmpleadoController empleado = new EmpleadoController();
+    ClienteController cliente = new ClienteController();
+    AutorController autor = new AutorController();
+
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     public void start(){
         while(true) {
+            System.out.println();
             System.out.println("""
                     ==========================
                         Puntos Suspensivos
                     ==========================
                     1. Gestión empleados
                     2. Gestión clientes
-                    3. Gestión libros
-                    4. Gestión categorías
-                    5. Gestión Ventas
+                    3. Gestión autores
+                    4. Gestión libros
+                    5. Gestión categorías
+                    6. Gestión Ventas
                     """);
             String opcion = sc.nextLine();
 
             switch (opcion) {
                 case "1" -> gestionEmpleados();
                 case "2" -> gestionClientes();
-                case "3" -> gestionLibros();
-                case "4" -> gestionCategorias();
-                case "5" -> gestionVentas();
+                case "3" -> gestionAutores();
+                case "4" -> gestionLibros();
+                case "5" -> gestionCategorias();
+                case "6" -> gestionVentas();
             }
         }
     }
@@ -62,7 +72,7 @@ public class Menu {
     public void verEmpleado(){
         try{
             System.out.println("Introduce el Id: ");
-            int id = sc.nextInt();
+            int id = pedirNumero();
 
             System.out.println(empleado.findEmpleado(id));
         }catch(InputMismatchException e){
@@ -90,8 +100,7 @@ public class Menu {
             LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
 
             System.out.print("Introduce el teléfono: ");
-            int telefono = sc.nextInt();
-            sc.nextLine();
+            int telefono = pedirNumero();
 
             System.out.print("Introduce el email: ");
             String email = sc.nextLine();
@@ -107,15 +116,13 @@ public class Menu {
     public void modificarEmpleado(){
         try {
             System.out.println("Que usuarios quieres modificar?");
-            int id = sc.nextInt();
-            sc.nextLine();
+            int id = pedirNumero();
             System.out.println("Introduce el nombre: ");
             String nombre = sc.nextLine();
             System.out.print("Introduce la fecha de nacimiento: ");
             LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
             System.out.println("Introduce el telefono: ");
-            int telefono = sc.nextInt();
-            sc.nextLine();
+            int telefono = pedirNumero();
             System.out.println("Introduce el email:");
             String email = sc.nextLine();
 
@@ -128,13 +135,14 @@ public class Menu {
     public void eliminarEmpleado(){
         try {
             System.out.println("Que usuario quieres eliminar?");
-            int id = sc.nextInt();
-
+            int id = pedirNumero();
             empleado.deleteEmpleado(id);
         }catch(InputMismatchException e){
             return;
         }
     }
+
+
 
 
     public void gestionClientes(){
@@ -147,7 +155,7 @@ public class Menu {
                     5. Eliminar cliente
                     """);
 
-            int opcion = sc.nextInt();
+            int opcion = pedirNumero();
 
             switch (opcion) {
                 case 1 -> verCliente();
@@ -163,23 +171,57 @@ public class Menu {
     }
 
     public void verCliente(){
-
+        System.out.println("Introduce el Id:");
+        System.out.println(cliente.findCliente(pedirNumero()));
     }
 
     public void verTodosClientes(){
-
+        for(Cliente cliente : cliente.findAll()){
+            System.out.println(cliente);
+        }
     }
 
     public void añadirCliente(){
-
+        try {
+            sc.nextLine();
+            System.out.println("Introduce el nombre:");
+            String nombre = sc.nextLine();
+            System.out.println("Introduce la fecha de nacimiento:");
+            LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
+            System.out.println("Introduce el telefono:");
+            int telefono = pedirNumero();
+            System.out.println("Introduce la direccion:");
+            String direccion = sc.nextLine();
+            cliente.save(new Cliente(nombre, fecha_nacimiento, telefono, direccion));
+        }catch(InputMismatchException e){
+            return;
+        }
     }
 
     public void modificarCliente(){
+        try {
+            System.out.println("Que cliente quieres modificar?");
+            int id_cliente = pedirNumero();
+            System.out.println("Introduce el nombre: ");
+            String nombre = sc.nextLine();
+            System.out.print("Introduce la fecha de nacimiento: ");
+            LocalDate fecha_nacimiento = LocalDate.parse(sc.nextLine(), formato);
+            System.out.println("Introduce el telefono: ");
+            int telefono = pedirNumero();
+            System.out.println("Introduce el email:");
+            String email = sc.nextLine();
+            System.out.println("Intorudce la dirección");
+            String direccion = sc.nextLine();
 
+            cliente.update(id_cliente, nombre, fecha_nacimiento, telefono, direccion);
+        }catch(InputMismatchException E){
+            return;
+        }
     }
 
     public void eliminarCliente(){
-
+        System.out.println("Que usuario quieres eliminar?");
+        cliente.deleteCliente(pedirNumero());
     }
 
 
@@ -192,7 +234,7 @@ public class Menu {
                 5. Eliminar libro
                 """);
 
-        int opcion = sc.nextInt();
+        int opcion = pedirNumero();
 
         switch(opcion){
             case 1 -> verLibro();
@@ -233,7 +275,7 @@ public class Menu {
                 5. Eliminar categoria
                 """);
 
-        int opcion = sc.nextInt();
+        int opcion = pedirNumero();
 
         switch(opcion){
             case 1 -> verCategoria();
@@ -273,7 +315,7 @@ public class Menu {
                 4. Crear ticket
                 """);
 
-        int opcion = sc.nextInt();
+        int opcion = pedirNumero();
 
         switch(opcion){
             case 1 -> verVenta();
@@ -302,5 +344,79 @@ public class Menu {
 
     public void eliminarVenta(){
 
+    }
+
+
+    public void gestionAutores() {
+        System.out.println("""
+                1. Ver autor
+                2. Ver todos los autores
+                3. Añadir autor
+                4. Modificar autor
+                5. Eliminar autor
+                """);
+
+        int opcion = pedirNumero();
+
+        switch(opcion){
+            case 1 -> verAutor();
+            case 2 -> verTodosAutores();
+            case 3 -> añadirAutor();
+            case 4 -> modificarAutor();
+            case 5 -> eliminarAutor();
+        }
+    }
+
+    public void verAutor(){
+        System.out.println("Introduce el Id:");
+        int opcion = pedirNumero();
+        System.out.println(autor.findAutor(opcion));
+    }
+
+    public void verTodosAutores(){
+        for(Autor autor : autor.findAll()){
+            System.out.println(autor);
+        }
+    }
+
+    public void añadirAutor(){
+        System.out.println("Introduce el nombre:");
+        String nombre = sc.next();
+        System.out.println("Introduce la nacionalidad");
+        String nacionalidad = sc.next();
+        System.out.println("Introduce la fecha de nacimeinto");
+        LocalDate fecha_nacimiento = LocalDate.parse(sc.next(), formato);
+        System.out.println("Introduce la biografia");
+        String biografia = sc.next();
+
+        autor.save(new Autor(nombre, nacionalidad, fecha_nacimiento, biografia));
+    }
+
+    public void modificarAutor(){
+        System.out.println("Que autor quieres modificar?");
+        int  id_autor = pedirNumero();
+        System.out.println("Introduce el nombre:");
+        String nombre = sc.next();
+        System.out.println("Introduce la nacionalidad");
+        String nacionalidad = sc.next();
+        System.out.println("Introduce la fecha de nacimeinto");
+        LocalDate fecha_nacimiento = LocalDate.parse(sc.next(), formato);
+        System.out.println("Introduce la biografia");
+        String biografia = sc.next();
+
+        autor.update(id_autor, nombre, nacionalidad, fecha_nacimiento, biografia);
+    }
+
+    public void eliminarAutor(){
+        System.out.println("Que autor quieres eliminar?");
+        int id_autor = pedirNumero();
+        autor.deleteAutor(id_autor);
+    }
+
+
+    private int pedirNumero() {
+        int numero = sc.nextInt();
+        sc.nextLine();
+        return numero;
     }
 }

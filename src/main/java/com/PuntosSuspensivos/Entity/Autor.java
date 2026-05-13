@@ -1,37 +1,32 @@
 package com.PuntosSuspensivos.Entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
 public class Autor {
-    private static int id_general = 1;
     private  int id_autor;
     private String nombre;
     private String nacionalidad;
-    private Date fecha_nacimiento;
+    private LocalDate fecha_nacimiento;
     private String biografia;
 
-    public Autor(){
-        this.id_autor=id_general;
-        id_general++;
-    }
 
-    public Autor(String nombre, String nacionalidad, Date fecha_nacimiento, String biografia){
-        this.id_autor=id_general;
+    public Autor(String nombre, String nacionalidad, LocalDate fecha_nacimiento, String biografia){
         this.nombre=nombre;
         this.nacionalidad=nacionalidad;
         this.fecha_nacimiento=fecha_nacimiento;
         this.biografia=biografia;
-        id_general++;
     }
 
-    public int getId_general() {
-        return id_general;
+    public Autor(int id_autor, String nombre, String nacionalidad, LocalDate fecha_nacimiento, String biografia){
+        this.id_autor=id_autor;
+        this.nombre=nombre;
+        this.nacionalidad=nacionalidad;
+        this.fecha_nacimiento=fecha_nacimiento;
+        this.biografia=biografia;
     }
 
-    public void setId_general(int id_general) {
-        this.id_general = id_general;
-    }
 
     public String getBiografia() {
         return biografia;
@@ -41,11 +36,11 @@ public class Autor {
         this.biografia = biografia;
     }
 
-    public Date getFecha_nacimiento() {
+    public LocalDate getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento) {
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
