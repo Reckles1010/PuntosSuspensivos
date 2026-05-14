@@ -1,26 +1,31 @@
 package com.PuntosSuspensivos.Entity;
 
 public class DetalleVenta {
-    private static int id_general=1;
     private int id_detalle;
     private int id_venta;
     private int id_libro;
     private int cantidad;
     private int precio;
 
-    public DetalleVenta(){
-        this.id_detalle=id_general;
-        id_general++;
+    public DetalleVenta(int id_libro, int cantidad, int precio){
+        this.id_libro=id_libro;
+        this.cantidad=cantidad;
+        this.precio=precio;
     }
 
     public DetalleVenta(int id_venta, int id_libro, int cantidad, int precio){
-        this.id_venta=id_general;
-        this.id_detalle=id_venta;
         this.id_venta=id_venta;
         this.id_libro=id_libro;
         this.cantidad=cantidad;
         this.precio=precio;
-        id_general++;
+    }
+
+    public DetalleVenta(int id_detalle, int id_venta, int id_libro, int cantidad, int precio){
+        this.id_detalle=id_detalle;
+        this.id_venta=id_venta;
+        this.id_libro=id_libro;
+        this.cantidad=cantidad;
+        this.precio=precio;
     }
 
     public int getId_detalle() {

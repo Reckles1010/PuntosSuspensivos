@@ -1,16 +1,17 @@
 package com.PuntosSuspensivos.Repository;
 
-
 import com.PuntosSuspensivos.Entity.DetalleVenta;
 
+import java.util.List;
+
 public interface DetalleVentaRepository {
-    public void save(DetalleVenta detalleVenta);
+    public void save(DetalleVenta detalle);
 
-    public void update(DetalleVenta detalleVenta);
+    public void  update(int id_venta, int id_libro, int cantidad, int precio);
 
-    public DetalleVenta deleteDetalle(int id);
+    public void deleteVenta(int idVenta);
 
-    public void findAll(int id);
+    public List<DetalleVenta> findAll(int idVenta);
 
-    public DetalleVenta findDetalle(int id);
+    public DetalleVenta findDetalle(int idVenta);
 }

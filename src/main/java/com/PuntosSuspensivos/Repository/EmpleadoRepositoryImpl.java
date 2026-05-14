@@ -74,7 +74,6 @@ public class EmpleadoRepositoryImpl implements EmpleadoRepository{
                 Connection connection = DataBaseConnection.getConnection();
                 PreparedStatement ps = connection.prepareStatement(query)
         ){
-
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
@@ -90,7 +89,6 @@ public class EmpleadoRepositoryImpl implements EmpleadoRepository{
                 ));
             }
             return  empleados;
-
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -100,14 +98,13 @@ public class EmpleadoRepositoryImpl implements EmpleadoRepository{
     @Override
     public Empleado findEmpleado(int id){
         String query = "SELECT * FROM usuarios WHERE id_usuario = ?";
+
         try(
             Connection connection = DataBaseConnection.getConnection();
             PreparedStatement ps = connection.prepareStatement(query)
         ){
             ps.setInt(1, id);
-
             ResultSet rs = ps.executeQuery();
-
             if(rs.next()){
                 return new Empleado(
                     rs.getInt("id_usuario"),

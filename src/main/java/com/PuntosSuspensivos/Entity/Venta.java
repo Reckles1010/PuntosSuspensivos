@@ -1,43 +1,29 @@
 package com.PuntosSuspensivos.Entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
 public class Venta {
-    private static int id_general = 1;
     private int id_venta;
     private int id_cliente;
     private int id_empleado;
-    private Date fecha_venta;
+    private LocalDate fecha_venta;
     private String estado_pago;
 
-    public Venta(){
-        this.id_venta = id_general;
-        id_general++;
-    }
-
-    public Venta(int id_empleado, Date fecha_venta, String estado_pago) {
-        this.id_cliente = id_general;
+    public Venta(int id_cliente, int id_empleado, LocalDate fecha_venta, String estado_pago) {
+        this.id_cliente = id_cliente;
         this.id_empleado = id_empleado;
         this.fecha_venta = fecha_venta;
         this.estado_pago = estado_pago;
-        id_general++;
     }
 
-    public String getEstado_pago() {
-        return estado_pago;
-    }
-
-    public void setEstado_pago(String estado_pago) {
-        this.estado_pago = estado_pago;
-    }
-
-    public int getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(int id_cliente) {
+    public Venta(int id_venta, int id_cliente, int id_empleado, LocalDate fecha_venta, String estado_pago) {
+        this.id_venta = id_venta;
         this.id_cliente = id_cliente;
+        this.id_empleado = id_empleado;
+        this.fecha_venta = fecha_venta;
+        this.estado_pago = estado_pago;
     }
 
     public int getId_venta() {
@@ -48,6 +34,22 @@ public class Venta {
         this.id_venta = id_venta;
     }
 
+    public String getEstado_pago() {
+        return estado_pago;
+    }
+
+    public void setEstado_pago(String estado_pago) {
+        this.estado_pago = estado_pago;
+    }
+
+    public LocalDate getFecha_venta() {
+        return fecha_venta;
+    }
+
+    public void setFecha_venta(LocalDate fecha_venta) {
+        this.fecha_venta = fecha_venta;
+    }
+
     public int getId_empleado() {
         return id_empleado;
     }
@@ -56,12 +58,12 @@ public class Venta {
         this.id_empleado = id_empleado;
     }
 
-    public Date getFecha_venta() {
-        return fecha_venta;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public void setFecha_venta(Date fecha_venta) {
-        this.fecha_venta = fecha_venta;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     @Override
