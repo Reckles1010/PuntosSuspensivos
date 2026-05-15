@@ -1,1 +1,13 @@
-Venta{id_venta=1, id_cliente=1, id_empleado=1, fecha_venta=2026-05-05, estado_pago='Completado'}DetalleVenta{id_detalle=1, id_venta=1, id_libro=1, cantidad=2, precio=18}
+===================================
+               TICKET              
+===================================
+Venta 1 realizada el 2026-05-05
+Atendida por 1
+Realizada por 1
+===================================
+Libro comprado: 1
+Cantidad: 2
+Precio: 18
+===================================
+TOTAL: 36
+===================================

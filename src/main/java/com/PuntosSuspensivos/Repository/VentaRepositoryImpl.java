@@ -1,5 +1,6 @@
 package com.PuntosSuspensivos.Repository;
 
+import com.PuntosSuspensivos.Entity.DetalleVenta;
 import com.PuntosSuspensivos.Entity.Venta;
 import com.PuntosSuspensivos.Repository.VentaRepository;
 import com.PuntosSuspensivos.util.DataBaseConnection;
@@ -137,11 +138,26 @@ public class VentaRepositoryImpl implements VentaRepository {
     @Override
     public void crearTicket(int id) {
         DetalleVentaRepositoryImpl detalleVentaRepositoryImpl = new DetalleVentaRepositoryImpl();
+        DetalleVenta detalleVenta = detalleVentaRepositoryImpl.findDetalle(id);
+        Venta venta = findVenta(id);
 
         System.out.println("Creando");
         File fichero = new File("fichero.txt");
+
         try(FileWriter fw = new FileWriter(fichero)){
-            fw.write((findVenta(id).toString())+(detalleVentaRepositoryImpl.findDetalle(id).toString()));
+            fw.write("==================================="+"\n");
+            fw.write("               TICKET              "+"\n");
+            fw.write("==================================="+"\n");
+            fw.write("Venta "+venta.getId_venta()+" realizada el "+venta.getFecha_venta()+"\n");
+            fw.write("Atendida por "+venta.getId_empleado()+"\n");
+            fw.write("Realizada por "+venta.getId_cliente()+"\n");
+            fw.write("==================================="+"\n");
+            fw.write("Libro comprado: "+detalleVenta.getId_libro()+"\n");
+            fw.write("Cantidad: "+detalleVenta.getCantidad()+"\n");
+            fw.write("Precio: "+detalleVenta.getPrecio()+"\n");
+            fw.write("==================================="+"\n");
+            fw.write("TOTAL: "+(detalleVenta.getCantidad()*detalleVenta.getPrecio())+"\n");
+            fw.write("==================================="+"\n");
         } catch(IOException e) {
             e.printStackTrace();
         }
