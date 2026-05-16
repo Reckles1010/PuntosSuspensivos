@@ -30,7 +30,7 @@ public class Menu {
             System.out.println();
             System.out.println("""
                     ==========================
-                        Puntos Suspensivos
+                       |Puntos Suspensivos |
                     ==========================
                     1. Gestión empleados
                     2. Gestión clientes
