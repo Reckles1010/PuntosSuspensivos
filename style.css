@@ -112,7 +112,7 @@ body {
     border-color: var(--primary-color);
 }
 
-h1 {
+.header__section {
     color: var(--secondary-color);
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 10px;
