@@ -225,6 +225,7 @@ h1 {
     border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    margin-top: 20px;
 }
 
 table {
@@ -266,6 +267,7 @@ tr:last-child td {
     cursor: pointer;
     font-size: 16px;
     margin-right: 5px;
+    margin-bottom: 20px;
 }
 
 .button__edit {
