@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function renderDashboard() {
-
         const dispCount = document.getElementById('disponibles-count');
         const vendCount = document.getElementById('vendidos-count');
         const dispBar = document.getElementById('disponibilidad-bar');
@@ -299,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         `;
 
+        renderDashboard();
     };
 
         document.getElementById('filtro-disponibilidad').addEventListener('keyup', renderDisponibilidad);
