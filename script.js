@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let usuarios = [
 
-        { id: 1, nombre: "Ana López", email: "ana@example.com", dni: "12345678A", telefono: "600111222", rol: "Cliente" },
-        { id: 2, nombre: "Carlos Ruiz", email: "carlos@example.com", dni: "87654321B", telefono: "611222333", rol: "Personal" },
-        { id: 3, nombre: "María Fernández", email: "maria@example.com", dni: "56781234C", telefono: "622333444", rol: "Cliente" }
+        { id: 1, nombre: "Ana López", email: "ana@gmail.com", dni: "12345678A", telefono: "600111222", rol: "Cliente" },
+        { id: 2, nombre: "Carlos Ruiz", email: "carlos@puntossuspensivos.com", dni: "87654321B", telefono: "611222333", rol: "Personal" },
+        { id: 3, nombre: "María Fernández", email: "maria@gmail.com", dni: "56781234C", telefono: "622333444", rol: "Cliente" }
 
     ];
 

@@ -1,6 +1,6 @@
 /* Estilos generales */
 
- :root {
+:root {
     --primary-color: rgb(105, 39, 130);
     --secondary-color: rgb(37, 43, 48);
     --background-color: rgb(244, 246, 249);
@@ -12,6 +12,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
+    height: 100%;
     background-color: var(--background-color);
     color: var(--text-color);
 }
@@ -33,7 +34,7 @@ body {
 .sidebar__header {
     padding: 20px;
     border-bottom: 1px solid var(--border-color);
-    font-size: 1.2em;
+    font-size: 19px;
     color: var(--primary-color);
 }
 
@@ -49,8 +50,8 @@ body {
 
 .menu__header {
     padding: 15px 20px 5px;
-    font-size: 0.8em;
-    color: #999;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
     text-transform: uppercase;
 }
 
@@ -129,7 +130,7 @@ h1 {
 .dashboard__card {
     background-color: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border-left: 5px solid var(--primary-color);
     transition: transform 0.2s;
@@ -141,8 +142,8 @@ h1 {
 
 .dashboard__card h3 {
     margin: 0;
-    font-size: 0.9rem;
-    color: #7f8c8d;
+    font-size: 15px;
+    color: rgb(127, 140, 141);
     text-transform: uppercase;
     display: flex;
     align-items: center;
@@ -151,12 +152,12 @@ h1 {
 
 .dashboard__card h3 i {
     color: var(--primary-color);
-    font-size: 1.2rem;
+    font-size: 19px;
 }
 
 .dashboard__card p {
     margin: 10px 0 0 0;
-    font-size: 2rem;
+    font-size: 32px;
     font-weight: bold;
     color: var(--secondary-color);
 }
@@ -174,7 +175,7 @@ h1 {
 .search__box-title {
     margin-top: 0;
     margin-bottom: 15px;
-    font-size: 1.15em;
+    font-size: 18px;
     font-weight: 600;
     color: var(--secondary-color);
     display: flex;
@@ -195,7 +196,7 @@ h1 {
     border: 1px solid var(--border-color);
     background-color: var(--background-color);
     color: var(--text-color);
-    font-size: 0.95em;
+    font-size: 15px;
     outline: none;
     transition: border-color 0.3s;
 }
@@ -210,7 +211,7 @@ h1 {
     border: 1px solid var(--border-color);
     background-color: var(--background-color);
     color: var(--text-color);
-    font-size: 0.95em;
+    font-size: 15px;
     cursor: pointer;
     outline: none;
     min-width: 110px;
@@ -221,7 +222,7 @@ h1 {
 .table__container {
     margin-top: 20px;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -252,7 +253,7 @@ tr:last-child td {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
     margin-right: 5px;
 }
 
@@ -263,40 +264,40 @@ tr:last-child td {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
     margin-right: 5px;
 }
 
 .button__edit {
-    background-color: #05a2ab;
+    background-color: rgb(5, 162, 171);
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
     margin-right: 5px;
 }
 
 .button__delete {
-    background-color: #ed0808;
+    background-color: rgb(212, 25, 25);
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
     margin-right: 5px;
 }
 
 .button__success {
-    background-color: #2ecc71;
+    background-color: rgb(46, 204, 113);
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 16px;
     margin-right: 5px;
     margin-top: 25px;
 }
@@ -316,14 +317,14 @@ tr:last-child td {
     background-color: white;
     margin: 15% auto;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 15px;
     width: 80%;
     max-width: 500px;
     position: relative;
 }
 
 .close__button {
-    color: #aaa;
+    color: rgb(170, 170, 170);
     float: right;
     font-size: 28px;
     font-weight: bold;
