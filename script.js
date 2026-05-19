@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderDashboard() {
 
-        const dispCount = document.getElementById('disponibles-count'); // Ojo: en tu HTML tenías '-' y en el JS '__'
+        const dispCount = document.getElementById('disponibles-count');
         const vendCount = document.getElementById('vendidos-count');
         const dispBar = document.getElementById('disponibilidad-bar');
         const dispPercent = document.getElementById('disponibilidad-percent');
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         formUsuario.reset();
 
-        document.getElementById('usuario__id').value = ''; // Limpiar ID para nuevo registro
+        document.getElementById('usuario__id').value = '';
 
         document.getElementById('modal__titulo__usuario').innerText = "Añadir Nuevo Usuario";
 
@@ -517,8 +517,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const datosUsuario = {
                 nombre: document.getElementById('usuario__nombre').value,
                 email: document.getElementById('usuario__email').value,
-                dni: document.getElementById('usuario__dni').value,          // <-- Capturar DNI
-                telefono: document.getElementById('usuario__telefono').value, // <-- Capturar Teléfono
+                dni: document.getElementById('usuario__dni').value,
+                telefono: document.getElementById('usuario__telefono').value,
                 rol: document.getElementById('usuario__rol').value
             };
 
@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             modalUsuario.style.display = 'none';
             renderUsuarios();
-            if(typeof renderInicio === "function") renderInicio(); // Actualiza el contador del inicio si existe
+            if(typeof renderInicio === "function") renderInicio();
         });
 
 
@@ -557,8 +557,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('usuario__id').value = usuario.id;
                     document.getElementById('usuario__nombre').value = usuario.nombre;
                     document.getElementById('usuario__email').value = usuario.email;
-                    document.getElementById('usuario__dni').value = usuario.dni || '';       // <-- Cargar DNI al editar
-                    document.getElementById('usuario__telefono').value = usuario.telefono || ''; // <-- Cargar Teléfono al editar
+                    document.getElementById('usuario__dni').value = usuario.dni || '';
+                    document.getElementById('usuario__telefono').value = usuario.telefono || '';
                     document.getElementById('usuario__rol').value = usuario.rol;
                     
                     document.getElementById('modal__titulo__usuario').innerText = "Editar Usuario";
