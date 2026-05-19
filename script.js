@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let usuarios = [
 
-        { id: 1, nombre: "Ana López", email: "ana@example.com", rol: "Cliente" },
-        { id: 2, nombre: "Carlos Ruiz", email: "carlos@example.com", rol: "Personal" },
-        { id: 3, nombre: "María Fernández", email: "maria@example.com", rol: "Cliente" }
+        { id: 1, nombre: "Ana López", email: "ana@example.com", dni: "12345678A", telefono: "600111222", rol: "Cliente" },
+        { id: 2, nombre: "Carlos Ruiz", email: "carlos@example.com", dni: "87654321B", telefono: "611222333", rol: "Personal" },
+        { id: 3, nombre: "María Fernández", email: "maria@example.com", dni: "56781234C", telefono: "622333444", rol: "Cliente" }
 
     ];
 
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>DNI</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
                         <th>Email</th>
                         <th>Rol</th>
                         <th>Acciones</th>
@@ -277,8 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.nombre}</td>
-                            <td>${user.dni}</td>
-                            <td>${user.telefono}</td>
+                            <td>${user.dni || '-'}</td>
+                            <td>${user.telefono || '-'}</td>
                             <td>${user.email}</td>
                             <td>${user.rol}</td>
                             <td>
@@ -510,64 +510,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    formUsuario.addEventListener('submit', (e) => {
+        formUsuario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('usuario__id').value;
 
-        e.preventDefault();
-
-        const id = document.getElementById('usuario__id').value;
-
-
-
-        const datosUsuario = {
-
-            nombre: document.getElementById('usuario__nombre').value,
-
-            email: document.getElementById('usuario__email').value,
-
-            rol: document.getElementById('usuario__rol').value
-
-        };
-
-
-
-        if (id) {
-
-
-
-            const index = usuarios.findIndex(u => u.id == id);
-
-            if (index !== -1) {
-
-                usuarios[index] = { ...usuarios[index], ...datosUsuario };
-
-            }
-
-
-
-        } else {
-
-
-
-            const nuevoUsuario = {
-
-                id: Date.now(),
-
-                ...datosUsuario
-
+            const datosUsuario = {
+                nombre: document.getElementById('usuario__nombre').value,
+                email: document.getElementById('usuario__email').value,
+                dni: document.getElementById('usuario__dni').value,          // <-- Capturar DNI
+                telefono: document.getElementById('usuario__telefono').value, // <-- Capturar Teléfono
+                rol: document.getElementById('usuario__rol').value
             };
 
-            usuarios.push(nuevoUsuario);
+            if (id) {
+                const index = usuarios.findIndex(u => u.id == id);
+                if (index !== -1) {
+                    usuarios[index] = { ...usuarios[index], ...datosUsuario };
+                }
+            } else {
+                const nuevoUsuario = { 
+                    id: Date.now(), 
+                    ...datosUsuario 
+                };
+                usuarios.push(nuevoUsuario);
+            }
 
-        }
-
-
-
-        modalUsuario.style.display = 'none';
-
-        renderUsuarios();
-
-    });
-
+            modalUsuario.style.display = 'none';
+            renderUsuarios();
+            if(typeof renderInicio === "function") renderInicio(); // Actualiza el contador del inicio si existe
+        });
 
 
 
@@ -580,29 +551,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        if (btn.classList.contains('button__edit')) {
-
-            const usuario = usuarios.find(u => u.id == id);
-
-            if (usuario) {
-
-                document.getElementById('usuario__id').value = usuario.id;
-
-                document.getElementById('usuario__nombre').value = usuario.nombre;
-
-                document.getElementById('usuario__email').value = usuario.email;
-
-                document.getElementById('usuario__rol').value = usuario.rol;
-
-
-
-                document.getElementById('modal__titulo__usuario').innerText = "Editar Usuario";
-
-                modalUsuario.style.display = 'block';
-
+            if (btn.classList.contains('button__edit')) {
+                const usuario = usuarios.find(u => u.id == id);
+                if (usuario) {
+                    document.getElementById('usuario__id').value = usuario.id;
+                    document.getElementById('usuario__nombre').value = usuario.nombre;
+                    document.getElementById('usuario__email').value = usuario.email;
+                    document.getElementById('usuario__dni').value = usuario.dni || '';       // <-- Cargar DNI al editar
+                    document.getElementById('usuario__telefono').value = usuario.telefono || ''; // <-- Cargar Teléfono al editar
+                    document.getElementById('usuario__rol').value = usuario.rol;
+                    
+                    document.getElementById('modal__titulo__usuario').innerText = "Editar Usuario";
+                    modalUsuario.style.display = 'block';
+                }
             }
-
-        }
 
 
 

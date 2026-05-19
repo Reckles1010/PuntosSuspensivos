@@ -76,9 +76,7 @@
             <section id="libros" class="page">
 
                 <h1>Gestión de Libros</h1>
-
                 <button class="button__primary" id="button__libro">Añadir Nuevo Libro</button>
-
                 <div id="libros__list" class="table-container"></div>
 
             </section>
@@ -86,7 +84,6 @@
             <section id="autores" class="page">
 
                 <h1>Catálogo de Autores</h1>
-
                 <div id="autores__list" class="table-container"></div>
 
             </section>
@@ -94,13 +91,9 @@
             <section id="categorias" class="page">
 
                 <h1>Categorías de Libros</h1>
-
                 <div id="categorias__list" class="table-container"></div>
 
             </section>
-
-
-
 
 
             <section id="usuarios" class="page">
@@ -114,19 +107,12 @@
             </section>
 
 
-
-
-
             <section id="disponibilidad" class="page">
 
                 <h1>Consulta de Disponibilidad</h1>
 
-
-
                 <input class="disponibilidad__form" type="text" id="filtro-disponibilidad" placeholder="Buscar libro">
-
                 <div id="disponibilidad__list" class="table-container"></div>
-
 
 
                 <div class="dashboard__widget">
@@ -136,7 +122,6 @@
                     <div class="stats-bar-header">
 
                         <span id="disponibles-count">Disponibles (0)</span>
-
                         <span id="vendidos-count">Vendidos (0)</span>
 
                     </div>
@@ -157,15 +142,7 @@
 
             </section>
 
-
-
         </main>
-
-        </div>
-
-
-
-
 
         <section id="modal__libro" class="modal">
 
@@ -217,52 +194,35 @@
 
 
 
-        <section id="modal__usuario" class="modal">
+    <section id="modal__usuario" class="modal">
+        <div class="modal__content">
+            <span class="close__button" id="close__usuario">&times;</span>
+            <h2 id="modal__titulo__usuario">Añadir Usuario</h2>
+            <form id="form__usuario">
+                <input type="hidden" id="usuario__id">
+                
+                <label for="usuario__nombre">Nombre:</label>
+                <input type="text" id="usuario__nombre" required>
+                
+                <label for="usuario__email">Email:</label>
+                <input type="email" id="usuario__email" required>
 
-            <div class="modal__content">
+                <label for="usuario__dni">DNI:</label>
+                <input type="text" id="usuario__dni" required placeholder="12345678A">
 
-                <span class="close__button" id="close__usuario">&times;</span>
+                <label for="usuario__telefono">Teléfono:</label>
+                <input type="tel" id="usuario__telefono" required placeholder="600123456">
 
-                <h2 id="modal__titulo__usuario">Añadir Usuario</h2>
+                <label for="usuario__rol">Rol:</label>
+                <select id="usuario__rol" required>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Personal">Personal</option>
+                </select>
 
-                <form id="form__usuario">
-
-                    <input type="hidden" id="usuario__id">
-
-
-
-                    <label for="usuario__nombre">Nombre:</label>
-
-                    <input type="text" id="usuario__nombre" required>
-
-
-
-                    <label for="usuario__email">Email:</label>
-
-                    <input type="email" id="usuario__email" required>
-
-
-
-                    <label for="usuario__rol">Rol:</label>
-
-                    <select id="usuario__rol" required>
-
-                        <option value="Cliente">Cliente</option>
-
-                        <option value="Personal">Personal</option>
-
-                    </select>
-
-
-
-                    <button type="submit" class="button__success">Guardar</button>
-
-                </form>
-
-            </div>
-
-        </section>
-
+                <button type="submit" class="button__success">Guardar</button>
+            </form>
+        </div>
+    </section>
 
 
         <script src="script.js"></script>
