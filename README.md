@@ -2,7 +2,7 @@
 
 ---
 
-Bienvenido al repositorio oficial de **Puntos Suspensivos**, un sistema CRM centralizado diseñado específicamente para optimizar la gestión operativa, el control de inventario y la administración de relaciones con clientes de una librería. Este proyecto integra de forma transversal los conocimientos de Frontend, Bases de Datos y Backend.  El sistema permite gestionar de manera integral el stock de libros, sus respectivos autores, los clientes de la librería, los usuarios del sistema (vendedores) y la disponibilidad del inventario integrando Programación(Java), Base de Datos(Oracle PL/SQL y MySQL Server), Diseño Web(HTML, CSS, JavaScript). 
+Bienvenido al repositorio oficial de **Puntos Suspensivos**, un sistema CRM centralizado diseñado específicamente para optimizar la gestión operativa, el control de inventario y la administración de relaciones con clientes de una librería. El sistema permite gestionar de manera integral el stock de libros, sus respectivos autores, los clientes de la librería, los usuarios del sistema (vendedores) y la disponibilidad del inventario integrando Programación(Java), Base de Datos(Oracle PL/SQL y MySQL Server), Diseño Web(HTML, CSS, JavaScript). 
 
 Este proyecto nace con el objetivo de ofrecer una solución integral, ágil y estructurada para que tanto el personal de ventas como la administración puedan llevar un control absoluto del flujo comercial del negocio.
 
