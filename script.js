@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    let libros = [
+    let libros = JSON.parse(sessionStorage.getItem("libros"))||[
 
         { id: 1, titulo: "Cien Años de Soledad", autor: "Gabriel García Márquez", categoria: "Novela", stock: 15, totalStock: 20 },
         { id: 2, titulo: "El Señor de los Anillos", autor: "J.R.R. Tolkien", categoria: "Fantasía", stock: 25, totalStock: 30 },
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
 
-    let usuarios = [
+    let usuarios = JSON.parse(sessionStorage.getItem("usuarios"))||[
 
         { id: 1, nombre: "Ana López", email: "ana@gmail.com", dni: "12345678A", telefono: "600111222", rol: "Cliente" },
         { id: 2, nombre: "Carlos Ruiz", email: "carlos@puntossuspensivos.com", dni: "87654321B", telefono: "611222333", rol: "Personal" },
@@ -127,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function renderDashboard() {
-
         const dispCount = document.getElementById('disponibles-count');
         const vendCount = document.getElementById('vendidos-count');
         const dispBar = document.getElementById('disponibilidad-bar');
@@ -299,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         `;
 
+        renderDashboard();
     };
 
         document.getElementById('filtro-disponibilidad').addEventListener('keyup', renderDisponibilidad);
@@ -356,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             modal.style.display = 'none';
+            sessionStorage.setItem("libros", JSON.stringify(libros))
             renderLibros();
             renderInicio();
 
@@ -442,6 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             modalUsuario.style.display = 'none';
+            sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
             renderUsuarios();
             if(typeof renderInicio === "function") renderInicio();
         });
