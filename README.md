@@ -17,6 +17,13 @@ El sistema permite interactuar y gestionar de forma eficiente los siguientes mó
 * **Roles de Usuario (Vendedores):** Sistema de accesos para el equipo de ventas, permitiendo trazar qué vendedor realiza cada operación.
 
 * **Base de Datos:** Se trata del motor de almacenamiento del sistema. El diseño original y la lógica de negocio en PL/SQL se ejecutan sobre Oracle Database, mientras que para la aplicación Java se migró el modelo a MySQL. El script incluye pruebas automatizadas para: Operaciones CRUD (Creación, Lectura, Modificación y Eliminación de registros).
+- **Libros** (stock y disponibilidad)
+- **Autores**
+- **Clientes**
+- **Categorías**
+- **Usuarios** (vendedores)
+- **Ventas** y **Detalle de Ventas**
+
 * **Aplicación de Consola:** Una aplicación de consola construida bajo el paradigma de la Programación Orientada a Objetos (POO), arquitectura en capas (Controller-Service-Repository) y acceso a datos mediante JDBC. Localiza la clase principal Main.java (o la que contenga el método main). Haz clic en Run. Se desplegará un menú interactivo en la consola que te permitirá: Navegar mediante opciones programadas ante excepciones.  Realizar un CRUD completo sobre las entidades del sistema de la librería.
 * **Aplicación Web:** Una interfaz dinámica, responsive y maquetada con la metodología BEM, que procesa la lógica de negocio en cliente mediante JavaScript y mantiene el estado de la sesión mediante SessionStorage. 
 
@@ -127,6 +134,42 @@ private static final String USER = "user1";
 private static final String PASSWORD = "1234";
 
 // CONFIGURACIÓN PARA MYSQL DATABASE
-// private static final String URL = "jdbc:mysql://localhost:3306/PuntosSuspensivos";
-// private static final String USER = "user1";
-// private static final String PASSWORD = "1234";
+private static final String URL = "jdbc:mysql://localhost:3306/PuntosSuspensivos";
+private static final String USER = "user1";
+private static final String PASSWORD = "1234";
+```
+
+---
+
+📦 CRM-Puntos-Suspensivos/
+├── 📂 backend-java/          # Aplicación Java (CRUD + JDBC)
+│   ├── src/
+│   │   ├── controller/       # Controladores
+│   │   ├── entitiy/          # Lógica de negocio
+│   │   ├── frontend/         # Menú
+│   │   ├── repository/       # Acceso a datos (Patrón Repository)
+│   │   ├── service/          # Gestión de datos (CRUD)
+│   │   └── util/             # Database connection
+│   └── lib/                  # Driver MySQL
+├── 📂 frontend-web/          # Aplicación Web (HTML, CSS, JS)
+│   ├── index.html
+│   ├── css/                  # Estilos (metodología BEM)
+│   └── js/                   # Lógica con JavaScript
+├── 📂 database-sql/         # Scripts de Base de Datos
+│   ├── oracle/               # Scripts DDL/DML para Oracle
+│   │   ├── ddl.sql
+│   │   └── dml.sql
+│   └── mysql/                # Scripts DDL/DML para MySQL
+│       ├── ddl.sql
+│       └── dml.sql
+└── README.md
+
+---
+
+## 🤝 Contribuciones
+Este proyecto es académico, desarrollado por alumnos de 1º DAM.
+
+Equipo de desarrollo:
+
+[Berta Díaz Flores]
+[Carlos Corchado Benito] 
