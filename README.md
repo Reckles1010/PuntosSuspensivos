@@ -141,25 +141,28 @@ private static final String PASSWORD = "1234";
 
 ---
 
-📦 CRM-Puntos-Suspensivos/
-├── 📂 backend-java/          # Aplicación Java (CRUD + JDBC)
-│   ├── src/
-│   │   ├── controller/       # Controladores
-│   │   ├── entitiy/          # Lógica de negocio
-│   │   ├── frontend/         # Menú
-│   │   ├── repository/       # Acceso a datos (Patrón Repository)
-│   │   ├── service/          # Gestión de datos (CRUD)
-│   │   └── util/             # Database connection
-│   └── lib/                  # Driver MySQL
-├── 📂 frontend-web/          # Aplicación Web (HTML, CSS, JS)
-│   ├── index.html
-│   ├── css/                  # Estilos (metodología BEM)
-│   └── js/                   # Lógica con JavaScript
-├── 📂 database-sql/         # Scripts de Base de Datos
-│   ├── oracle/               # Scripts DDL/DML para Oracle
+## 📂 Estructura del Proyecto
+
+```text
+CRM-Puntos-Suspensivos/
+├── backend-java/                  # Aplicación Java (CRUD + JDBC)
+│   ├── lib/                       # Driver MySQL
+│   └── src/
+│       ├── controller/            # Controladores
+│       ├── entitiy/               # Lógica de negocio (Modelos)
+│       ├── frontend/              # Menú de consola
+│       ├── repository/            # Acceso a datos (Patrón Repository)
+│       ├── service/               # Gestión de datos (Servicios CRUD)
+│       └── util/                  # Database connection
+├── frontend-web/                  # Aplicación Web (HTML, CSS, JS)
+│   ├── css/                       # Estilos (metodología BEM)
+│   ├── js/                        # Lógica con JavaScript
+│   └── index.html                 # Página principal del CRM
+├── database-sql/                  # Scripts de Base de Datos
+│   ├── mysql/                     # Scripts DDL/DML para MySQL
 │   │   ├── ddl.sql
 │   │   └── dml.sql
-│   └── mysql/                # Scripts DDL/DML para MySQL
+│   └── oracle/                    # Scripts DDL/DML para Oracle
 │       ├── ddl.sql
 │       └── dml.sql
 └── README.md
