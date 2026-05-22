@@ -1,4 +1,4 @@
-# ⚡ CRM Puntos Suspensivos - Customer Relationship Management
+# ⚡ CRM Puntos Suspensivos
 
 ---
 
@@ -23,7 +23,7 @@ El sistema permite interactuar y gestionar de forma eficiente los siguientes mó
 
 ---
 
-## 🛠️ Requisitos Previos (Software Necesario) y Tecnologías Utilizadas
+## 🛠️ Requisitos Previos 
 
 Antes de comenzar, asegúrate de tener instalado en tu máquina local:
 
@@ -75,7 +75,7 @@ Haz un refresco (`F5`) sobre el árbol de navegación izquierdo y valida la exis
 
 ---
 
-## 🗄️ 2. Configuración de la Base de Datos en PL/SQL Developer (Oracle)
+## 🗄️ 2. Configuración de la Base de Datos en PL/SQL Developer
 
 Si prefieres desplegar el entorno o revisar el diseño lógico original utilizando **PL/SQL Developer** conectado a una instancia de Oracle Database, sigue estos pasos secuenciales:
 
@@ -104,7 +104,7 @@ Abre IntelliJ IDEA y selecciona Open para cargar la carpeta del proyecto Java ub
 
 ---
 
-## 💻 3. Configuración del Proyecto en Java (IntelliJ IDEA)
+## 💻 3. Configuración del Proyecto en Java
 
 Para ejecutar el núcleo del programa y levantar la lógica del CRM:
 
