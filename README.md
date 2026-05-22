@@ -17,12 +17,6 @@ El sistema permite interactuar y gestionar de forma eficiente los siguientes mó
 * **Roles de Usuario (Vendedores):** Sistema de accesos para el equipo de ventas, permitiendo trazar qué vendedor realiza cada operación.
 
 * **Base de Datos:** Se trata del motor de almacenamiento del sistema. El diseño original y la lógica de negocio en PL/SQL se ejecutan sobre Oracle Database, mientras que para la aplicación Java se migró el modelo a MySQL. El script incluye pruebas automatizadas para: Operaciones CRUD (Creación, Lectura, Modificación y Eliminación de registros).
-- **Libros** (stock y disponibilidad)
-- **Autores**
-- **Clientes**
-- **Categorías**
-- **Usuarios** (vendedores)
-- **Ventas** y **Detalle de Ventas**
 
 * **Aplicación de Consola:** Una aplicación de consola construida bajo el paradigma de la Programación Orientada a Objetos (POO), arquitectura en capas (Controller-Service-Repository) y acceso a datos mediante JDBC. Localiza la clase principal Main.java (o la que contenga el método main). Haz clic en Run. Se desplegará un menú interactivo en la consola que te permitirá: Navegar mediante opciones programadas ante excepciones.  Realizar un CRUD completo sobre las entidades del sistema de la librería.
 * **Aplicación Web:** Una interfaz dinámica, responsive y maquetada con la metodología BEM, que procesa la lógica de negocio en cliente mediante JavaScript y mantiene el estado de la sesión mediante SessionStorage. 
@@ -145,20 +139,20 @@ private static final String PASSWORD = "1234";
 
 ```text
 CRM-Puntos-Suspensivos/
-├── backend-java/                  # Aplicación Java (CRUD + JDBC)
+├── backend-java/                  # APARTADO DE PROGRAMACIÓN
 │   ├── lib/                       # Driver MySQL
 │   └── src/
 │       ├── controller/            # Controladores
-│       ├── entitiy/               # Lógica de negocio (Modelos)
+│       ├── entitiy/               # Entidades del programa
 │       ├── frontend/              # Menú de consola
-│       ├── repository/            # Acceso a datos (Patrón Repository)
-│       ├── service/               # Gestión de datos (Servicios CRUD)
+│       ├── repository/            # Acceso a la base de datos
+│       ├── service/               # Gestión de datos
 │       └── util/                  # Database connection
-├── frontend-web/                  # Aplicación Web (HTML, CSS, JS)
+├── frontend-web/                  # APARTADO LENGUAJE DE MARCAS
 │   ├── css/                       # Estilos (metodología BEM)
 │   ├── js/                        # Lógica con JavaScript
 │   └── index.html                 # Página principal del CRM
-├── database-sql/                  # Scripts de Base de Datos
+├── database-sql/                  # APARTADO DE BASE DE DATOS
 │   ├── mysql/                     # Scripts DDL/DML para MySQL
 │   │   ├── ddl.sql
 │   │   └── dml.sql
