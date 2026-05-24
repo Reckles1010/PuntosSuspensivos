@@ -1,7 +1,6 @@
 package com.PuntosSuspensivos.Repository;
 
-import com.PuntosSuspensivos.Repository.DetalleVentaRepository;
-import com.PuntosSuspensivos.util.DataBaseConnection;
+import com.PuntosSuspensivos.Util.DataBaseConnection;
 import com.PuntosSuspensivos.Entity.DetalleVenta;
 
 import java.sql.*;

@@ -2,8 +2,7 @@ package com.PuntosSuspensivos.Repository;
 
 import com.PuntosSuspensivos.Entity.DetalleVenta;
 import com.PuntosSuspensivos.Entity.Venta;
-import com.PuntosSuspensivos.Repository.VentaRepository;
-import com.PuntosSuspensivos.util.DataBaseConnection;
+import com.PuntosSuspensivos.Util.DataBaseConnection;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,6 +11,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class VentaRepositoryImpl implements VentaRepository {
     @Override
@@ -23,18 +23,12 @@ public class VentaRepositoryImpl implements VentaRepository {
         ){
             ps.setInt(1, venta.getId_cliente());
             ps.setInt(2, venta.getId_empleado());
-
-            ps.setDate(
-                    3,
-                    java.sql.Date.valueOf(venta.getFecha_venta())
-            );
-
+            ps.setDate(3, java.sql.Date.valueOf(venta.getFecha_venta()));
             ps.setString(4, venta.getEstado_pago());
 
             ps.executeUpdate();
 
             PreparedStatement idMax =connection.prepareStatement("SELECT MAX(id_venta) FROM ventas");
-
             ResultSet rs = idMax.executeQuery();
 
             if (rs.next()) {
@@ -62,7 +56,6 @@ public class VentaRepositoryImpl implements VentaRepository {
             ps.setInt(5, id);
 
             ps.executeUpdate();
-
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -141,8 +134,10 @@ public class VentaRepositoryImpl implements VentaRepository {
         DetalleVenta detalleVenta = detalleVentaRepositoryImpl.findDetalle(id);
         Venta venta = findVenta(id);
 
-        System.out.println("Creando");
-        File fichero = new File("fichero.txt");
+        File carpeta = new File("src/main/java/com/PuntosSuspensivos/Tickets");
+        carpeta.mkdirs();
+
+        File fichero = new File(carpeta,"Ticket-"+ UUID.randomUUID()+".txt");
 
         try(FileWriter fw = new FileWriter(fichero)){
             fw.write("==================================="+"\n");
