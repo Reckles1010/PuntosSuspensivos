@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formLibro.addEventListener('submit', (e) => {
             e.preventDefault();
             const id = document.getElementById('libro__id').value;
-            const stockVal = parseInt(document.getElementById('stock').value); // Corregida variable huérfana
+            const stockVal = parseInt(document.getElementById('stock').value);
 
             const nuevoLibroData = {
                 titulo: document.getElementById('titulo').value,
