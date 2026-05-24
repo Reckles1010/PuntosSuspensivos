@@ -383,6 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const id = e.target.dataset.id;
                     if (confirm('¿Estás seguro de que quieres eliminar este libro?')) {
                         libros = libros.filter(l => l.id != id);
+
+                        sessionStorage.setItem("libros", JSON.stringify(libros));
+
                         renderLibros();
                         renderInicio();
                         renderDashboard();
@@ -476,7 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 usuarios = usuarios.filter(u => u.id != id);
 
+                sessionStorage.setItem("usuarios", JSON.stringify(usuarios));
+
                 renderUsuarios();
+                renderInicio();
+                renderDashboard();
             }
         }
     });
