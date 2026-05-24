@@ -38,6 +38,7 @@ public class Menu {
                     4. Gestión libros
                     5. Gestión categorías
                     6. Gestión Ventas
+                    7. Salir
                     """);
             String opcion = sc.nextLine();
 
@@ -48,6 +49,7 @@ public class Menu {
                 case "4" -> gestionLibros();
                 case "5" -> gestionCategorias();
                 case "6" -> gestionVentas();
+                case "7" -> System.exit(0);
                 default -> System.out.println("Opción invalida");
             }
         }

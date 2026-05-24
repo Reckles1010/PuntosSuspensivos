@@ -1,7 +1,7 @@
 package com.PuntosSuspensivos.Repository;
 
 import com.PuntosSuspensivos.Entity.Empleado;
-import com.PuntosSuspensivos.util.DataBaseConnection;
+import com.PuntosSuspensivos.Util.DataBaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

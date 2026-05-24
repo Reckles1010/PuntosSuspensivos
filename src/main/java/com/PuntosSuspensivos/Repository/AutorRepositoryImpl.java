@@ -1,9 +1,7 @@
 package com.PuntosSuspensivos.Repository;
 
 import com.PuntosSuspensivos.Entity.Autor;
-import com.PuntosSuspensivos.Entity.Empleado;
-import com.PuntosSuspensivos.Service.EmpleadoService;
-import com.PuntosSuspensivos.util.DataBaseConnection;
+import com.PuntosSuspensivos.Util.DataBaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AutorRepositoryImpl implements AutorRepository{
