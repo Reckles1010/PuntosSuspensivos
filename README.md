@@ -82,8 +82,8 @@ Si prefieres desplegar el entorno o revisar el diseño lógico original utilizan
 ### Paso 1: Establecer la Conexión
 1. Abre **PL/SQL Developer**.
 2. En la ventana de inicio de sesión (*Logon*), introduce tus credenciales de Oracle:
-   * **Username:** `tu_usuario`
-   * **Password:** `tu_contraseña`
+   * **Username:** `user1`
+   * **Password:** `1234`
    * **Database:** Nombre del servicio de tu base de datos (ej. `XE`, `ORCL` o el alias de tu archivo `tnsnames.ora`).
    * **Connect as:** Selecciona `Normal` (o `SYSDBA` si vas a crear el usuario/esquema desde cero).
 
