@@ -516,6 +516,7 @@ body.dark__mode .disponibilidad__form:focus {
 }
 
 
+/*--------MEDIA QUERYS-------*/
 @media(max-width:1200px){
     .table__container{
         overflow-x: auto;
@@ -529,9 +530,6 @@ body.dark__mode .disponibilidad__form:focus {
 }
 
 @media(max-width:675px){
-    .search__container-box{
-    } 
-
     .disponibilidad__form{
         width: 85%;
     }
