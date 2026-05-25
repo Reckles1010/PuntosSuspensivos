@@ -119,7 +119,7 @@ Para ejecutar el núcleo del programa y levantar la lógica del CRM:
 4. Configura el **Project SDK** apuntando a Java 21.
 
 ### Paso 3: Archivo de Conexión de Base de Datos
-Verifica el archivo de conexión a la base de datos llamado DataBaseConnection.java ubicado en el paquete Util. Si usas un puerto para conectarte a MySQL distinto de 3306 cambia ese puerto en el código por el que utilices, aparece en:
+Verifica el archivo de conexión a la base de datos llamado DataBaseConnection.java ubicado en el paquete Util. Si usas un puerto para conectarte a MySQL distinto de `3306` cambia ese puerto en el código por el que utilices, aparece en:
 
 ```java
     private static final String oracleUrl = "jdbc:oracle:thin:@//localhost:1521/XEPDB1";
