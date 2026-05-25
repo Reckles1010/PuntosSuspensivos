@@ -75,7 +75,7 @@ Haz un refresco (`F5`) sobre el árbol de navegación izquierdo y valida la exis
 
 ---
 
-## 🗄️ 2. Configuración de la Base de Datos en PL/SQL Developer
+## 🗄️ 2. Configuración de la Base de Datos (Oracle Database)
 
 Si prefieres desplegar el entorno o revisar el diseño lógico original utilizando **PL/SQL Developer** conectado a una instancia de Oracle Database, sigue estos pasos secuenciales:
 
